@@ -4,7 +4,7 @@ Configuration management for templates
 
 import yaml
 from pathlib import Path
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional
 
 
 class TemplateConfig:
@@ -96,6 +96,11 @@ class TemplateConfig:
         for k in keys[:-1]:
             if k not in config:
                 config[k] = {}
+            elif not isinstance(config[k], dict):
+                raise ValueError(
+                    f"Cannot set nested key '{key}': "
+                    f"'{k}' is not a dictionary"
+                )
             config = config[k]
 
         config[keys[-1]] = value
@@ -109,14 +114,14 @@ class TemplateConfig:
         """
         return self.config.get("variables", {})
 
-    def get_templates(self) -> List[Dict[str, Any]]:
+    def get_templates(self) -> Dict[str, Dict[str, Any]]:
         """
         Get template definitions from configuration
 
         Returns:
-            List of template definitions
+            Dictionary of template definitions
         """
-        return self.config.get("templates", [])
+        return self.config.get("templates", {})
 
     def add_template(self, name: str, template_data: Dict[str, Any]) -> None:
         """

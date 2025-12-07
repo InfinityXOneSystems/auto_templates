@@ -119,3 +119,22 @@ templates: {}
         """Test that loading nonexistent config raises error"""
         with pytest.raises(FileNotFoundError):
             TemplateConfig("/nonexistent/config.yaml")
+
+    def test_set_nested_value_with_existing_non_dict(self):
+        """Test that setting nested value on non-dict raises error"""
+        config = TemplateConfig()
+        config.set("key", "value")
+
+        with pytest.raises(ValueError, match="not a dictionary"):
+            config.set("key.nested", "value")
+
+    def test_get_templates_returns_dict(self):
+        """Test that get_templates returns a dictionary"""
+        config = TemplateConfig()
+        config.add_template(
+            "test_template", {"file": "test.j2", "description": "Test"}
+        )
+
+        templates = config.get_templates()
+        assert isinstance(templates, dict)
+        assert "test_template" in templates
