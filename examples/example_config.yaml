@@ -1,0 +1,28 @@
+version: '1.0.0'
+
+# Template variables
+variables:
+  author: "John Doe"
+  email: "john.doe@example.com"
+  project_name: "my_awesome_project"
+  description: "An awesome project built with auto templates"
+  version: "0.1.0"
+  year: "2025"
+  license_type: "MIT"
+
+# Template definitions
+templates:
+  python_class:
+    file: "python/class.py.j2"
+    description: "Generate Python class files"
+  
+  readme:
+    file: "docs/README.md.j2"
+    description: "Generate README.md file"
+  
+  html_page:
+    file: "web/html5.html.j2"
+    description: "Generate HTML5 page"
+
+# Output configuration
+output_dir: "./output"

@@ -1,0 +1,40 @@
+/**
+ * {{ project_name | default('Project') }} Stylesheet
+ * {{ description | default('CSS styles') }}
+ {% if author %}* Author: {{ author }}{% endif %}
+ */
+
+{% if reset %}
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+{% endif %}
+
+/* Global Styles */
+:root {
+    {% if colors %}
+    {% for color_name, color_value in colors.items() %}
+    --{{ color_name }}: {{ color_value }};
+    {% endfor %}
+    {% else %}
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --text-color: #333;
+    --background-color: #fff;
+    {% endif %}
+}
+
+body {
+    font-family: {{ font_family | default("'Arial', sans-serif") }};
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+{% if custom_styles %}
+/* Custom Styles */
+{{ custom_styles }}
+{% endif %}

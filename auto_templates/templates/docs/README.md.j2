@@ -1,0 +1,65 @@
+# {{ project_name | default('Project Name') }}
+
+{{ description | default('Project description goes here.') }}
+
+## Features
+
+{% if features %}
+{% for feature in features %}
+- {{ feature }}
+{% endfor %}
+{% else %}
+- Feature 1
+- Feature 2
+- Feature 3
+{% endif %}
+
+## Installation
+
+```bash
+{% if install_command %}
+{{ install_command }}
+{% else %}
+# Add installation instructions here
+{% endif %}
+```
+
+## Usage
+
+{% if usage %}
+{{ usage }}
+{% else %}
+```bash
+# Add usage examples here
+```
+{% endif %}
+
+## Configuration
+
+{% if configuration %}
+{{ configuration }}
+{% else %}
+Configuration details go here.
+{% endif %}
+
+## Contributing
+
+{% if contributing %}
+{{ contributing }}
+{% else %}
+Contributions are welcome! Please feel free to submit a Pull Request.
+{% endif %}
+
+## License
+
+{% if license %}
+{{ license }}
+{% else %}
+This project is licensed under the MIT License.
+{% endif %}
+
+{% if author %}
+## Author
+
+{{ author }}{% if email %} ({{ email }}){% endif %}
+{% endif %}

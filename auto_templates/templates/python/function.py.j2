@@ -1,0 +1,28 @@
+"""
+{{ description | default('Python function') }}
+"""
+
+{% if imports %}
+{{ imports }}
+{% endif %}
+
+
+def {{ name | default('my_function') }}({% if params %}{{ params }}{% endif %}){% if return_type %} -> {{ return_type }}{% endif %}:
+    """
+    {{ function_description | default('Function description') }}
+    {% if params %}
+    Args:
+        {% for param in params.split(',') %}
+        {{ param.strip() }}: Parameter description
+        {% endfor %}
+    {% endif %}
+    {% if return_type and return_type != 'None' %}
+    Returns:
+        {{ return_description | default('Return value description') }}
+    {% endif %}
+    """
+    {% if body %}
+    {{ body | indent(4) }}
+    {% else %}
+    pass
+    {% endif %}

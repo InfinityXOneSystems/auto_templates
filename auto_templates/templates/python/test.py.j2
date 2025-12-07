@@ -1,0 +1,42 @@
+"""
+Tests for {{ module_name | default('module') }}
+"""
+
+import pytest
+{% if imports %}
+{{ imports }}
+{% endif %}
+from {{ module_name | default('module') }} import {{ class_name | default('MyClass') }}
+
+
+class Test{{ class_name | default('MyClass') }}:
+    """Test cases for {{ class_name | default('MyClass') }}"""
+
+    def setup_method(self):
+        """Set up test fixtures"""
+        {% if setup %}
+        {{ setup | indent(8) }}
+        {% else %}
+        pass
+        {% endif %}
+
+    def teardown_method(self):
+        """Clean up after tests"""
+        {% if teardown %}
+        {{ teardown | indent(8) }}
+        {% else %}
+        pass
+        {% endif %}
+
+    def test_initialization(self):
+        """Test {{ class_name | default('MyClass') }} initialization"""
+        {% if test_init %}
+        {{ test_init | indent(8) }}
+        {% else %}
+        instance = {{ class_name | default('MyClass') }}()
+        assert instance is not None
+        {% endif %}
+
+    {% if additional_tests %}
+    {{ additional_tests }}
+    {% endif %}
