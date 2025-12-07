@@ -1,0 +1,26 @@
+"""
+{{ name | default('module') }} - {{ description | default('Python module') }}
+"""
+
+{% if author %}
+__author__ = "{{ author }}"
+{% endif %}
+{% if version %}
+__version__ = "{{ version }}"
+{% endif %}
+{% if email %}
+__email__ = "{{ email }}"
+{% endif %}
+
+{% if imports %}
+{{ imports }}
+{% endif %}
+
+{% if constants %}
+# Constants
+{{ constants }}
+{% endif %}
+
+{% if content %}
+{{ content }}
+{% endif %}

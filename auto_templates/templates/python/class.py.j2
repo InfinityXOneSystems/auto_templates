@@ -1,0 +1,38 @@
+"""
+{{ description | default('A Python class') }}
+"""
+
+{% if author %}
+__author__ = "{{ author }}"
+{% endif %}
+{% if version %}
+__version__ = "{{ version }}"
+{% endif %}
+
+
+class {{ name | default('MyClass') }}:
+    """
+    {{ class_description | default('Class description') }}
+    """
+
+    def __init__(self{% if init_params %}, {{ init_params }}{% endif %}):
+        """
+        Initialize {{ name | default('MyClass') }}
+        {% if init_params %}
+        Args:
+            {{ init_params }}: Initialization parameters
+        {% endif %}
+        """
+        {% if init_body %}
+        {{ init_body | indent(8) }}
+        {% else %}
+        pass
+        {% endif %}
+
+    def __str__(self) -> str:
+        """String representation of {{ name | default('MyClass') }}"""
+        return "{{ name | default('MyClass') }}()"
+
+    def __repr__(self) -> str:
+        """Debug representation of {{ name | default('MyClass') }}"""
+        return f"{{ name | default('MyClass') }}()"
