@@ -1,0 +1,3 @@
+[submodule "submodules/auto_templates"]
+	path = submodules/auto_templates
+	url = https://github.com/InfinityXOneSystems/auto_templates.git
